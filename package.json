@@ -1,0 +1,28 @@
+{
+  "name": "CharltonBot",
+  "version": "1.0.0",
+  "description": "A bot for Discord.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JensColman/CharltonBot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JensColman/CharltonBot/issues"
+  },
+  "homepage": "https://github.com/JensColman/CharltonBot#readme",
+  "dependencies": {
+    "discord.js": "^11.5.0",
+    "dotenv": "^8.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
+}
