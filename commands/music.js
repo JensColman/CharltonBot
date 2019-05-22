@@ -6,6 +6,10 @@ module.exports = message => {
     const VoiceChannel =  message.guild.channels.find(channel => channel.id === '580791585021755408');
     var song = message.content.split(' ');
     var url = song[1];
+
+    if (!url) {
+        return message.reply(' Please add the Youtube link of your song after the !play command, divided with a space.');
+    }
     
     if (VoiceChannel != null) {
         // console.log(`${VoiceChannel.name} was found and is a ${VoiceChannel.type} channel.`);
