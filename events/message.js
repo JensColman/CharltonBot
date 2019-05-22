@@ -15,3 +15,11 @@ module.exports = (client, message) => {
         return calc(message);
     }
 };
+
+// Music
+const music = require('../commands/music');
+module.exports = (client, message) => {
+    if (message.content.startsWith('!play')) {
+        return music(message);
+    }
+};
