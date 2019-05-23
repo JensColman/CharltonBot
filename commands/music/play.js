@@ -6,6 +6,7 @@ module.exports = message => {
     const permissions = voiceChannel.permissionsFor(message.client.user);
     var song = message.content.split(' ');
     var url = song[1];
+    // const serverQueue = queueList.get(message.guild.id);
 
     if (!url) {
         return message.reply(' Please add the Youtube link of your song after the !musicPlay command, divided with a space.');
