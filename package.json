@@ -1,5 +1,5 @@
 {
-  "name": "CharltonBot",
+  "name": "charltonbot",
   "version": "1.0.0",
   "description": "A bot for Discord.",
   "main": "app.js",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/JensColman/CharltonBot#readme",
   "dependencies": {
     "discord.js": "^11.5.1",
+    "request": "2.81.0",
     "dotenv": "^8.2.0",
     "ffmpeg-binaries": "^4.0.0",
     "opusscript": "0.0.6",
