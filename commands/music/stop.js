@@ -2,7 +2,7 @@ const ytdl = require('ytdl-core');
 const streamOptions = {seek: 0, volume: 1};
 
 module.exports = message => {
-    const voiceChannel =  message.guild.channels.find(channel => channel.id === '580791585021755408');
+    const voiceChannel = message.guild.channels.find(channel => channel.id === '649699187641810955'); //580791585021755408
     const permissions = voiceChannel.permissionsFor(message.client.user);
     var song = message.content.split(' ');
     var url = song[1];

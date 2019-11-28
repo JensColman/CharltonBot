@@ -1,5 +1,6 @@
 const prefix = '!';
 
+const help = require('../commands/help');
 const kick = require('../commands/kick');
 const calc = require('../commands/calculator');
 const play = require('../commands/music/play');
@@ -11,6 +12,10 @@ module.exports = (client, message) => {
         return undefined;
     }
 
+    if (message.content.startsWith(`${prefix}help`)) {
+        return help(message);
+    }
+
     if (message.content.startsWith(`${prefix}kick`)) {
         return kick(message);
     }
@@ -19,11 +24,11 @@ module.exports = (client, message) => {
         return calc(message);
     }
 
-    if (message.content.startsWith(`${prefix}musicPlay`)) {
+    if (message.content.startsWith(`${prefix}play`)) {
         return play(message);
     }
 
-    if (message.content.startsWith(`${prefix}musicStop`)) {
+    if (message.content.startsWith(`${prefix}stop`)) {
         return stop(message);
     }
 
