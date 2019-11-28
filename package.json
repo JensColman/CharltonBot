@@ -23,8 +23,10 @@
     "dotenv": "^8.2.0",
     "ffmpeg-binaries": "^4.0.0",
     "fs": "0.0.1-security",
-    "lzma-native": "^6.13.1",
+    "lzma-native": "^5.0.0",
+    "m3u8stream": "^0.6.3",
     "opusscript": "0.0.6",
+    "parse-time": "^0.1.4",
     "request": "2.81.0",
     "ytdl-core": "^0.29.7"
   },
