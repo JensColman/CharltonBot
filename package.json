@@ -19,13 +19,13 @@
   },
   "homepage": "https://github.com/JensColman/CharltonBot#readme",
   "dependencies": {
-    "discord.js": "^11.5.0",
-    "dotenv": "^8.0.0",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
     "ffmpeg-binaries": "^4.0.0",
     "opusscript": "0.0.6",
-    "ytdl-core": "^0.29.2"
+    "ytdl-core": "^0.29.7"
   },
   "devDependencies": {
-    "nodemon": "^1.19.0"
+    "nodemon": "^1.19.4"
   }
 }
