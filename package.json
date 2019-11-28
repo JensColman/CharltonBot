@@ -23,7 +23,7 @@
     "dotenv": "^8.2.0",
     "ffmpeg-binaries": "^4.0.0",
     "fs": "0.0.1-security",
-    "lzma-native": "^5.0.0",
+    "lzma-native": "^6.13.1",
     "opusscript": "0.0.6",
     "request": "2.81.0",
     "ytdl-core": "^0.29.7"
