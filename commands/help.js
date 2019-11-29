@@ -10,7 +10,7 @@ module.exports = message => {
         { command: "!calc", discription: "There is a time when you quickly want to calculate something. Since we're all too lazy to search for a calculator, you can simply use this command.", usage: "Type !calc [the calculation] to calculate." },
         { command: "!play", discription: "tbd", usage: "Type !play [Link to the Youtube video] to play this song in the voice channel." },
         { command: "!stop", discription: "tbd", usage: "Type !stop to stop the music that is currently is playing." },
-        { command: "!queue", discription: "tbd", usage: "tbd" }
+        { command: "!skip", discription: "tbd", usage: "tbd" }
     ];
 
     let findCommand = object => {
