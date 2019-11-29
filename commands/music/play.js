@@ -1,43 +1,89 @@
 const ytdl = require('ytdl-core');
-const streamOptions = {seek: 0, volume: 1};
+// const YouTube = require('simple-youtube-api');
+const queue = new Map();
 
-module.exports = message => {
-    const voiceChannel = message.guild.channels.find(channel => channel.id === '649699187641810955'); //580791585021755408
+function playMusic(guild, song) {
+    const serverQueue = queue.get(guild.id);
+
+	if (!song) {
+		serverQueue.voiceChannel.leave();
+		queue.delete(guild.id);
+		return;
+    }
+    
+    console.log(serverQueue.songs);
+
+	const dispatcher = serverQueue.connection
+		.playStream(ytdl(song.url))
+		.on('end', () => {
+			console.log('Song ended.');
+			serverQueue.songs.shift();
+			playMusic(guild, serverQueue.songs[0]);
+		})
+		.on('error', error => console.log(error));
+
+	dispatcher.setVolumeLogarithmic(5 / 5);
+}
+
+
+module.exports = async message => {
+    const args = message.content.split(' ');
+    const url = args[1];
+    const serverQueue = queue.get(message.guild.id);
+
+    const voiceChannel = message.member.voiceChannel;
+    if (!voiceChannel) return message.reply('You need to be in a voice channel to play music!');
+
     const permissions = voiceChannel.permissionsFor(message.client.user);
-    var song = message.content.split(' ');
-    var url = song[1];
-    // const serverQueue = queueList.get(message.guild.id);
+    if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
+        return message.channel.send('I need the permissions to join and speak in your voice channel!');
+    }
 
     if (!url) {
         return message.reply(' Please add the Youtube link of your song after the !play command, divided with a space.');
     }
 
     if (!voiceChannel) {
-        return message.reply('I need to be in the voice channel to play music.');
+        return message.reply('You need to be in a voice channel to play music.');
     }
 
-    if (!permissions.has('CONNECT')) {
-        return message.reply('I cannot connect to the voice channel, make sure I have the proper permissions.');
-    }
-
-    if (!permissions.has('SPEAK')) {
-        return message.reply('I cannot speak in the voice channel, make sure I have the proper permissions.');
-    }
+    const songInfo = await ytdl.getInfo(args[1]);
+    const song = {
+        title: songInfo.title,
+        url: songInfo.video_url
+    };
+    console.log(songInfo.baseUrl);
     
-    if (voiceChannel != null) {
-        // console.log(`${VoiceChannel.name} was found and is a ${VoiceChannel.type} channel.`);
-        voiceChannel.join()
-        .then(connection => {
-            // console.log('Bot joined the channel.'); 
-            const stream = ytdl(url, {filter: 'audioonly'});
-            const dispatcher = connection.playStream(stream, streamOptions);
 
-            dispatcher.on('end', () => {
-                voiceChannel.leave();
-            })
+    if (!serverQueue) {
+        const queueContruct = {
+            textChannel: message.channel,
+            voiceChannel: voiceChannel,
+            connection: null,
+            songs: [],
+            volume: 5,
+            playing: true
+        };
+        queue.set(message.guild.id, queueContruct);
 
-            // dispatcher.setVolumeLogarithmic(5 / 5);
-        })
-        .catch();
-    } 
+        queueContruct.songs.push(song);
+
+        try {
+            var connection = await voiceChannel.join();
+            queueContruct.connection = connection;
+            playMusic(message.guild, queueContruct.songs[0]);
+		} catch (err) {
+            console.log(`I could not join the voice channel: ${err}`);
+            queue.delete(message.guild.id);
+			return message.reply('I could not join the voice channel.');
+		}
+    } else {
+        serverQueue.songs.push(song);
+        console.log(serverQueue.songs);
+        return message.channel.send(`'${song.title}' has been added to the queue.`);
+    }
+
+    return undefined;
 };
+
+// https://www.youtube.com/watch?v=4IcBdWOOsPo&list=PLVzaElkTvlQae8XJ0ujnEgz1GviufNx8h&index=2

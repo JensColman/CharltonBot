@@ -5,7 +5,7 @@ const kick = require('../commands/kick');
 const calc = require('../commands/calculator');
 const play = require('../commands/music/play');
 const stop = require('../commands/music/stop');
-// const queue = require('../commands/music/queue');
+const skip = require('../commands/music/skip');
 
 module.exports = (client, message) => {
     if (message.author.bot) {
@@ -32,7 +32,8 @@ module.exports = (client, message) => {
         return stop(message);
     }
 
-    // if (message.content.startsWith(`${prefix}musicQueue`)) {
-    //     return queue(message);
-    // }
+    if (message.content.startsWith(`${prefix}skip`)) {
+        return skip(message);
+    }
+
 };

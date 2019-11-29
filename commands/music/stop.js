@@ -1,15 +1,16 @@
 const ytdl = require('ytdl-core');
-const streamOptions = {seek: 0, volume: 1};
 
 module.exports = message => {
-    const voiceChannel = message.guild.channels.find(channel => channel.id === '649699187641810955'); //580791585021755408
+    const voiceChannel = message.member.voiceChannel;
     const permissions = voiceChannel.permissionsFor(message.client.user);
-    var song = message.content.split(' ');
-    var url = song[1];
+    var args = message.content.split(' ');
+    var url = args[1];
 
     if (!message.member.voiceChannel) {
         return message.reply('You are not in a voice channel.');
+    } else {
+        voiceChannel.leave();
+		return undefined;
     }
-    voiceChannel.leave();
-    return undefined;
+    
 };
