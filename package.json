@@ -26,14 +26,14 @@
     "fs": "0.0.1-security",
     "lzma-native": "^5.0.0",
     "m3u8stream": "^0.6.3",
-    "opusscript": "0.0.6",
+    "opusscript": "0.0.7",
     "parse-time": "^0.1.4",
     "request": "2.81.0",
     "simple-youtube-api": "^5.2.1",
-    "ytdl-core": "^0.29.7"
+    "ytdl-core": "^1.0.6"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "nodemon": "^2.0.2"
   },
   "engines": {
     "node": "10.15.3",
